@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sayfası</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        #sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        #content {
+            flex: 1;
+            margin-left: 290px;
+            padding: 20px;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #logout {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            width: 60%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: auto;
+        }
+
+        .card {
+            display: flex;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .card-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-image {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="sidebar">
+            <div class="user-info">
+                {% csrf_token %}
+                <h1>Merhaba, {{ ad }} {{ soyad }}.</h1>
+            </div>
+            <img src="" alt="" class="profile-image">
+        </div>
+    </div>
+    <div id="content">
+        <div class="card">
+            <div class="col-md-3">
+                <img src="/media/card_images/egzersiz.png" alt="Kart Resmi" class="card-image">
+            </div>
+            <div class="col-md-3">
+                <div class="text-content">
+                    <h3>Egzersiz ve Beslenme Planı </h3>
+                    <p>Egzersiz ve Beslenme Planlarınızı görmek için tıklayınız.</p>
+                    <a href="{% url 'egzersiz_beslenme_plani' %}" class="detail-button">Detay</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/media/card_images/ilerleme.jpeg" alt="Kart Resmi" class="card-image">
+            <div class="card-info">
+                <h3>İlerleme Kayıtlarını</h3>
+                <p>İlerleme kayıtlarınızı görmek için tıklayınız.</p>
+                <a href="{% url 'ilerlemeKayitlari'%}" class="detail-button">Detay</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/media/card_images/obez.png" alt="Kart Resmi" class="card-image">
+            <div class="card-info">
+                <h3>Fiziksel Özellikler</h3>
+                <p>Fiziksel özelliklerinizi eklemek ya da yenilemek için tıklayınız.</p>
+                <a href="{% url 'danisanBilgileriKaydet' %}" class="detail-button">Detay</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/media/card_images/obez.png" alt="Kart Resmi" class="card-image">
+            <div class="card-info">
+                <h3>Mesaj</h3>
+                <p>Mesaj bilgileri için tıklayınız.</p>
+                <a href="#" class="detail-button">Detay</a>
+            </div>
+        </div>
+
+        <form id="logoutForm" action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button id="logoutButton" type="submit">Çıkış Yap</button>
+        </form>
+    </div>
+</body>
+
+</html>

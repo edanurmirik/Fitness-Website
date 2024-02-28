@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ekle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            width: 3000px;
+            background-color: #fff;
+            padding: 200px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="text"],
+        select {
+            width: calc(100% - 20px)
+        }
+    </style>
+</head>
+
+<body>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <h2>Plan Atama</h2>
+
+        {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        <label for="istek">Plan Seçimi:</label>
+        <select name="istek" id="istek">
+            {% for plan in egzersiz_beslenme_listesi %}
+                <option>{{ plan.baslik }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="ad">Danışan adı:</label>
+        <input type="text" name="ad" required>
+
+        <label for="soyad">Danışan soyadı:</label>
+        <input type="text" name="soyad" required>
+
+        <button type="submit">Save Changes</button><a href="{% url 'home' %}"></a>
+
+        <p>Plan oluşturmak mı istiyorsunuz? <a href="{% url 'planOlusturma' %}">Plan oluştur</a></p>
+    </form>
+</body>
+
+</html>

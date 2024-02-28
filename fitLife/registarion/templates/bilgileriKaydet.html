@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% if error %}
+    <div class="error-message">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'bilgileriKaydet' %}">
+        <h2>Edit Profile</h2>
+        {% csrf_token %}
+        <label for="ad">Ad:</label>
+        <input type="text" name="ad" required>
+
+        <label for="soyad">Soyad:</label>
+        <input type="text" name="soyad" required>
+
+        <label for="dogumTarihi">Doğum Tarihi:</label>
+        <input type="date" name="dogumTarihi" required>
+
+        <label for="cinsiyet">Cinsiyet:</label>
+        <select name="cinsiyet">
+            <option value="E">Erkek</option>
+            <option value="K">Kadın</option>
+            <option value="D">Diğer</option>
+        </select>
+
+        <label for="telefonNumarasi">Phone Number:</label>
+        <input type="tel" id="telefonNumarasi" name="telefonNumarasi" pattern="[0-9]{10}" required>
+
+        <label for="profilFotografi">Profil Fotoğrafı:</label>
+        <input type="file" name="profilFotografi" accept="image/*">
+
+        <label for="rol">Rol:</label>
+        <select name="rol">
+            <option value="Antrenör">Antrenör</option>
+            <option value="Danışan">Danışan</option>
+        </select>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+</body>
+</html>

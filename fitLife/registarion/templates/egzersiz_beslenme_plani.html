@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antrenman ve Beslenme Planı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #content-container {
+            width: 300px;
+            margin: 0 auto;
+            border: 2px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .plan {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="trainerName">Antrenör Ataması</h1>
+    <div id="content-container">
+
+        <div class="plan">
+            <h2>Egzersiz Planı</h2>
+            <p>{{ plan.egzersiz_content }}</p>
+        </div>
+
+        <div class="plan">
+            <h2>Beslenme Planı</h2>
+            <p>{{ plan.beslenme_content }}</p>
+        </div>
+    </div>
+</body>
+
+</html>

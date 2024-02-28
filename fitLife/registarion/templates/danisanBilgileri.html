@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danışanlar Listesi</title>
+    <style>
+        /* Stil ekleyebilirsiniz */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danışanlar Listesi</h1>
+    <table id="danisanTable">
+        <thead>
+          <tr>
+            <th>Ad Soyad</th>
+            <th>İstek</th>
+          </tr>
+        </thead>
+        <tbody id="danisanTableBody">
+          {% for record, other_record in birlesik_liste %}
+            <tr>
+              <td><a href="{% url 'ilerlemeKayitlariGor' %}">{{ record.ad }} {{ record.soyad }}</a></td>
+              <td> {{ other_record.istek }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</body>
+</html>
